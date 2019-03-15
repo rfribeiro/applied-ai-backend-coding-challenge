@@ -38,3 +38,13 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 * Marian - https://github.com/marian-nmt/marian
 * RabbitMQ - https://www.rabbitmq.com/#getstarted
 * Flask - http://flask.pocoo.org
+
+## Activities
+
+- [ ] Flask input page
+- [ ] Flask publish input on RabbitMQ 
+- [ ] C++ Wrapper definition
+- [ ] C++ Wrapper RabbitMQ consumer
+- [ ] C++ Wrapper translation using Marian
+- [ ] C++ save translation on PostgreSQL server
+- [ ] Flask web page dinamically update from database
