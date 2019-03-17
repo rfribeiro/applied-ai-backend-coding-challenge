@@ -1,27 +1,19 @@
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
-import pika
+from flask_sqlalchemy import SQLAlchemy
+import os
+
 
 # App config.
 DEBUG = True
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
- 
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-class Publisher():
-	def publish(_self, text):
-		connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
-		channel = connection.channel()
-
-		channel.queue_declare(queue='translator', durable=True)
-
-		channel.basic_publish(exchange='',
-		                      routing_key='translator',
-		                      body=text)
-
-		print(" [x] Sent Text to Translate")
-		connection.close()
+#from database import db_session
+from models import Translation
+from communication import Publisher
 
 class ReusableForm(Form):
 	text = TextField('Text:', validators=[validators.required()])
@@ -36,10 +28,27 @@ def translate():
 		print (text)
 	 
 		if form.validate():
-		# Save the comment here.
-			flash('Text to translate: ' + text)
+			# Save the comment here.
+			# save database
+			try:
+				result = Translation(
+					original=text,
+					status='requested',
+				)
+				db.session.add(result)
+				db.session.commit()
+				print(" [x] Saved Text to Translate " + str(result.id))
+			except Exception as e:
+				print (e)
+				flash('Error: Saving database')
+				return render_template('translate.html', form=form)
+
+			#send request
 			publisher = Publisher()
 			publisher.publish(text)
+			print(" [x] Sent Text to Translate")
+
+			flash('Text to translate: ' + text)
 		else:
 			flash('Error: Text is required ')
 	 
