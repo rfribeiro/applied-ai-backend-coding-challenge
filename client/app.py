@@ -14,7 +14,7 @@ class Publisher():
 		connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 		channel = connection.channel()
 
-		channel.queue_declare(queue='translator')
+		channel.queue_declare(queue='translator', durable=True)
 
 		channel.basic_publish(exchange='',
 		                      routing_key='translator',
