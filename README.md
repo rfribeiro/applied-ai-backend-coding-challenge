@@ -41,10 +41,10 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 
 ## Activities
 
-- [ ] Flask input page
-- [ ] Flask publish input on RabbitMQ 
-- [ ] C++ Wrapper definition
-- [ ] C++ Wrapper RabbitMQ consumer
+- [X] Flask input page
+- [X] Flask publish input on RabbitMQ 
+- [X] C++ Wrapper definition
+- [X] C++ Wrapper RabbitMQ consumer
 - [ ] C++ Wrapper translation using Marian
 - [ ] C++ save translation on PostgreSQL server
 - [ ] Flask web page dinamically update from database
