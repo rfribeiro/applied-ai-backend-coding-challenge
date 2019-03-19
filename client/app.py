@@ -48,12 +48,12 @@ def translate():
 			publisher.publish(json.dumps(result.as_dict()))
 			print(" [x] Sent Text to Translate " + json.dumps(result.as_dict()))
 
-			flash('Text to translate: ' + text)
+			flash(text)
 		else:
 			flash('Error: Text is required ')
 	 
-	translations = Translation.query.all()
-	
+	translations = Translation.query.order_by(Translation.translated_count.desc()).all()
+
 	return render_template('translate.html', form=form, translations=translations)
  
 if __name__ == "__main__":
