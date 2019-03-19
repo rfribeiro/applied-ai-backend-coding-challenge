@@ -8,7 +8,7 @@
     {{ form.csrf }}
 <div class="form-group">
       <label for="text">Text:</label>
-<input type="text" class="form-control" id="text" name="text" placeholder="Text to translate?">
+<input type="text" class="form-control" id="text" name="text" placeholder="Enter text to translate">
  
 </div>
 <button type="submit" class="btn btn-success">Translate</button>
@@ -29,4 +29,31 @@
 {% endif %}
 {% endwith %}
  
+
+<h1>Translations</h1>
+    <table>
+	<tr>
+		<th>Original</th>
+		<th>Translated</th>
+		<th>Status</th>
+		<th>Translation word count</th>
+	</tr>
+      {% for translation in translations %}
+        <tr>
+          <td>
+            {{translation.original}}
+          </td>
+          <td>
+            {{translation.translated}}
+          </td>
+          <td>
+            {{translation.status}}
+          </td>
+          <td>
+            {{translation.translated_count}}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
 </div>

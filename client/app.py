@@ -52,7 +52,9 @@ def translate():
 		else:
 			flash('Error: Text is required ')
 	 
-	return render_template('translate.html', form=form)
+	translations = Translation.query.all()
+	
+	return render_template('translate.html', form=form, translations=translations)
  
 if __name__ == "__main__":
 	app.run()
