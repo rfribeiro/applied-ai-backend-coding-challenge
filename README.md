@@ -51,4 +51,9 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 - [X] C++ Update status translation on PostgreSQL
 - [ ] C++ Wrapper translation using Marian
 - [ ] C++ save translation on PostgreSQL server
-- [ ] Flask web page dinamically update from database
+- [X] Flask web page dinamically update from database
+- [ ] Flask web page pagination
+- [ ] C++ wrapper batch translation ??
+- [ ] Flask web page memcache ??
+- [ ] Application configuration servers
+- [ ] Dockerize application
