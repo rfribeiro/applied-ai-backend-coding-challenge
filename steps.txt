@@ -1,0 +1,31 @@
+# installing RabbitMQ
+sudo apt-get install rabbitmq-server
+
+# create virtual env
+virtualenv virtualenv/unbabel --python=python3.5
+
+# activate virtual env
+source virtualenv/unbabel/bin/activate
+
+# install python requirements
+pip install -r requirements.txt
+
+# install C++ requirements
+# boost
+sudo apt-get install libboost-all-dev
+# libpqxx-dev (PostgreSQL)
+sudo apt-get install libpqxx-dev
+
+# install C++ AMQP-CPP
+# https://github.com/CopernicaMarketingSoftware/AMQP-CPP
+# https://github.com/hoxnox/examples.amqp-cpp/blob/master/worker.cpp
+
+
+# install Marian
+# https://marian-nmt.github.io/docs/
+
+# run publisher
+
+# run consumer
+
+export DATABASE_URL = "postgresql://postgres:postgres@localhost/translations"

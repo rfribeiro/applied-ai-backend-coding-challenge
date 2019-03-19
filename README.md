@@ -43,8 +43,12 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 
 - [X] Flask input page
 - [X] Flask publish input on RabbitMQ 
+- [X] Flask save translation input on PostgreSQL 
 - [X] C++ Wrapper definition
 - [X] C++ Wrapper RabbitMQ consumer
+- [ ] Send JSON object to RabbitMQ from Flask 
+- [ ] Read JSON object to RabbitMQ from C++ Wrapper
+- [ ] C++ Update status translation on PostgreSQL
 - [ ] C++ Wrapper translation using Marian
 - [ ] C++ save translation on PostgreSQL server
 - [ ] Flask web page dinamically update from database

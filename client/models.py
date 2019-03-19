@@ -20,3 +20,7 @@ class Translation(db.Model):
 
     def __repr__(self):
         return '<Message %r>' % (self.original)
+
+    def as_dict(self):
+        return {"id": self.id, "original": self.original, "translated": self.translated, 
+            "status": self.status, "translated_count": self.translated_count}

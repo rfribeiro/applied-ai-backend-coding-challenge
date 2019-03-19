@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from flask_sqlalchemy import SQLAlchemy
 import os
-
+import json
 
 # App config.
 DEBUG = True
@@ -45,8 +45,8 @@ def translate():
 
 			#send request
 			publisher = Publisher()
-			publisher.publish(text)
-			print(" [x] Sent Text to Translate")
+			publisher.publish(json.dumps(result.as_dict()))
+			print(" [x] Sent Text to Translate " + json.dumps(result.as_dict()))
 
 			flash('Text to translate: ' + text)
 		else:
