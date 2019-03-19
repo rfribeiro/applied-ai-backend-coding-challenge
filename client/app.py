@@ -16,7 +16,7 @@ from models import Translation
 from communication import Publisher
 
 class ReusableForm(Form):
-	text = TextField('Text:', validators=[validators.required()])
+	text = TextField('Text:', validators=[validators.required(), validators.length(max=300)])
  
 @app.route("/translate", methods=['GET', 'POST'])
 def translate():
