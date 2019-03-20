@@ -8,6 +8,8 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    TRANSLATIONS_PER_PAGE = 3
+    TRANSLATE_TEXT_SIZE = 300
 
 
 class ProductionConfig(Config):

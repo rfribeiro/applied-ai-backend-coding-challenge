@@ -29,31 +29,49 @@
 {% endif %}
 {% endwith %}
  
-
-<h1>Translations</h1>
-    <table>
-	<tr>
-		<th>Original</th>
-		<th>Translated</th>
-		<th>Status</th>
-		<th>Translation word count</th>
-	</tr>
-      {% for translation in translations %}
-        <tr>
-          <td>
-            {{translation.original}}
-          </td>
-          <td>
-            {{translation.translated}}
-          </td>
-          <td>
-            {{translation.status}}
-          </td>
-          <td>
-            {{translation.translated_count}}
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
+<h2>Translations</h2>
+{% if prev_url %}
+<a href="{{ prev_url }}">Previous Page</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">Next Page</a>
+{% endif %}
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th style="width: 35%">Original</th>
+				<th style="width: 10%">Lenght</th>
+				<th style="width: 35%">Translated</th>
+				<th style="width: 10%">Lenght</th>
+				<th style="width: 20%">Status</th>
+				
+			</tr>
+		</thead>
+  		<tbody>
+	    {% for translation in translations_table %}
+	      <tr class="success">
+	        <td>
+	          {{translation.original}}
+	        </td>
+	        <td class="text-center">
+	          {{translation.original_count}}
+	        </td>
+	        <td>
+	          {{translation.translated}}
+	        </td>
+	        <td class="text-center">
+	          {{translation.translated_count}}
+	        </td>
+	        {% if translation.status == 'requested'  %}
+             <td class="text-danger">{{ translation.status }}</td>
+            {% elif translation.status == 'pending'  %}
+             <td class="text-warning">{{ translation.status }}</td>
+            {% else %}
+             <td class="text-success">{{ translation.status }}</td>
+            {% endif %}
+	      </tr>
+	    {% endfor %}
+	</tbody>
+</table>
 
 </div>
