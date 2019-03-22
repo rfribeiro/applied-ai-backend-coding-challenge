@@ -49,11 +49,13 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 - [X] Send JSON object to RabbitMQ from Flask 
 - [X] Read JSON object to RabbitMQ from C++ Wrapper
 - [X] C++ Update status translation on PostgreSQL
-- [ ] C++ Wrapper translation using Marian
-- [ ] C++ save translation on PostgreSQL server
+- [X] C++ Wrapper translation using Marian
+- [X] C++ save translation on PostgreSQL server
 - [X] Flask web page dinamically update from database
-- [ ] Flask web page pagination
-- [ ] C++ wrapper batch translation ??
-- [ ] Flask web page memcache ??
+- [X] Flask web page pagination
+- [ ] Flask web page dinamically list
 - [ ] Application configuration servers
 - [ ] Dockerize application
+- [ ] Page localization support
+- [ ] C++ wrapper batch translation ??
+- [ ] Flask web page memcache ??

@@ -14,10 +14,8 @@ db = SQLAlchemy(app)
 #from database import db_session
 from models import Translation
 from communication import Publisher
+from forms import ReusableForm
 
-class ReusableForm(Form):
-	text = TextField('Text:', validators=[validators.required(), validators.length(max=app.config['TRANSLATE_TEXT_SIZE'])])
- 
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/index", methods=['GET', 'POST'])
 @app.route("/translate", methods=['GET', 'POST'])
@@ -54,16 +52,15 @@ def translate():
 		else:
 			flash('Error: Text is required ')
 	 
-	#translations = Translation.get_translations()
-
-	#return render_template('translate.html', form=form, translations=translations)
 	page = request.args.get('page', 1, type=int)
 	translations_table = Translation.query.order_by(Translation.translated_count.desc()).paginate(
 	    page, app.config['TRANSLATIONS_PER_PAGE'], False)
+
 	next_url = url_for('translate', page=translations_table.next_num) \
 	    if translations_table.has_next else None
 	prev_url = url_for('translate', page=translations_table.prev_num) \
 	    if translations_table.has_prev else None
+
 	return render_template('translate.html', title='Home', form=form,
 	                       translations_table=translations_table.items, next_url=next_url,
 	                       prev_url=prev_url)
