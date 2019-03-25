@@ -1,0 +1,22 @@
+{
+	"rabbit": {
+		"host": "localhost",
+		"port": 5672,
+		"user": "guest",
+		"password": "guest",
+		"vfolder": "/",
+		"queue_name":"translator"
+	},
+
+	"database": {
+		"dbname":"translations",
+		"user":"postgres",
+		"password":"postgres",
+		"hostaddr":"127.0.0.1",
+		"port":5432
+	},
+
+	"translator": {
+		"command": "./amun -m en-de/model.npz -s en-de/vocab.en.json -t en-de/vocab.de.json"
+	}
+}
