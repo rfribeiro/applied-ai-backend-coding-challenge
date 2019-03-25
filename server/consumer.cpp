@@ -39,57 +39,78 @@ class Translator  {
         }  
 };
 
-bool update_database_status(int id, std::string status) {
-    try
-    {
-        pqxx::connection c("dbname=translations user=postgres password=postgres hostaddr=127.0.0.1 port=5432");
-        if (c.is_open()) {
-            std::cout << "Opened database successfully: " << c.dbname() << std::endl;
-        } else {
-            std::cout << "Can't open database" << std::endl;
-         return 1;
-        }
+class TranslatorDatabase {
 
-        auto sql = "UPDATE translation set status = \'" + status + "\' where ID=" + std::to_string(id);
-        //auto sql = command.str();
-        pqxx::work w(c);
-        w.exec(sql.c_str());
-        w.commit();
-        std::cout << "Records updated successfully" << std::endl;
+    public:
+
+    static const bool update_status(int id, std::string status) {
+
+        bool bReturn = true;
+
+        try
+        {
+            pqxx::connection c("dbname=translations user=postgres password=postgres hostaddr=127.0.0.1 port=5432");
+            if (c.is_open()) {
+                std::cout << "Opened database successfully: " << c.dbname() << std::endl;
+
+                auto sql = "UPDATE translation set status = \'" + status + "\' where ID=" + std::to_string(id);
+                //auto sql = command.str();
+                pqxx::work w(c);
+                w.exec(sql.c_str());
+                w.commit();
+                std::cout << "Records updated successfully" << std::endl;
+
+            } else {
+                std::cout << "Can't open database" << std::endl;
+                throw std::runtime_error("Can't open database");
+            }
+
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+            throw std::runtime_error("Can't open database");
+        }
+        return bReturn;
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-        return 1;
+
+    static const bool  update_translation(int id, std::string translation, int translation_lenght, std::string status) {
+        try
+        {
+            pqxx::connection c("dbname=translations user=postgres password=postgres hostaddr=127.0.0.1 port=5432");
+            if (c.is_open()) {
+                std::cout << "Opened database successfully: " << c.dbname() << std::endl;
+
+                auto sql = "UPDATE translation set translated=\'" + translation + "\'" \
+                            + ", translated_count = " + std::to_string(translation_lenght)  \
+                            + ", status = \'" + status + "\'" \
+                            + "where ID=" + std::to_string(id);
+                pqxx::work w(c);
+                w.exec(sql.c_str());
+                w.commit();
+                std::cout << "Records updated successfully" << std::endl;
+
+            } else {
+                std::cout << "Can't open database" << std::endl;
+                throw std::runtime_error("Can't open database");
+            }
+
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+            throw std::runtime_error("Can't open database");
+        }
+        return bReturn;
     }
+
 }
 
-bool update_database_translation(int id, std::string translation, int translation_lenght, std::string status) {
-    try
-    {
-        pqxx::connection c("dbname=translations user=postgres password=postgres hostaddr=127.0.0.1 port=5432");
-        if (c.is_open()) {
-            std::cout << "Opened database successfully: " << c.dbname() << std::endl;
-        } else {
-            std::cout << "Can't open database" << std::endl;
-         return 1;
-        }
-
-        //auto sql = "UPDATE translation set status = \'pending\' where ID=1";
-        auto sql = "UPDATE translation set translated=\'" + translation + "\'" \
-                                    + ", translated_count = " + std::to_string(translation_lenght)  \
-                                    + ", status = \'" + status + "\'" \
-                                    + "where ID=" + std::to_string(id);
-        pqxx::work w(c);
-        w.exec(sql.c_str());
-        w.commit();
-        std::cout << "Records updated successfully" << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-        return 1;
-    }
+json read_configuration(std::string file) {
+    std::ifstream ifile(file);
+    json j;
+    ifile >> j;
+    return j
 }
 
 int main(void) {
