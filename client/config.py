@@ -10,6 +10,10 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     TRANSLATIONS_PER_PAGE = 3
     TRANSLATE_TEXT_SIZE = 300
+    RABBITMQ_HOST='localhost'
+    RABBITMQ_USER='guest'
+    RABBITMQ_PASSWORD='password'
+    RABBITMQ_QUEUE_NAME='translator'
 
 
 class ProductionConfig(Config):

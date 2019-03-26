@@ -52,10 +52,13 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 - [X] C++ Wrapper translation using Marian
 - [X] C++ save translation on PostgreSQL server
 - [X] Flask web page dinamically update from database
-- [X] Flask web page pagination
-- [ ] Flask web page dinamically list
+- [X] Flask web page pagination (removed)
+- [X] Flask web page dinamically list
+- [ ] Flask web page memcache ??
+- [ ] Flask web and C++ wrapper refactorying
 - [ ] Application configuration servers
+- [ ] Create Errors pages and test scenarios
 - [ ] Dockerize application
 - [ ] Page localization support
 - [ ] C++ wrapper batch translation ??
-- [ ] Flask web page memcache ??
+

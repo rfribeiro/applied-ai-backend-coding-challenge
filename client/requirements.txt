@@ -1,8 +1,10 @@
 alembic==1.0.8
 Click==7.0
 Flask==1.0.2
+Flask-Caching==1.6.0
 Flask-Migrate==2.4.0
 Flask-Script==2.0.6
+Flask-Session==0.3.1
 Flask-SQLAlchemy==2.3.2
 itsdangerous==1.1.0
 Jinja2==2.10
@@ -10,6 +12,7 @@ Mako==1.0.7
 MarkupSafe==1.1.1
 pika==0.13.1
 psycopg2==2.7.7
+pylibmc==1.6.0
 python-dateutil==2.8.0
 python-editor==1.0.4
 six==1.12.0

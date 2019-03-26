@@ -1,4 +1,4 @@
-<title>Reusable Form Demo</title>
+<title>Unbabel - Flask Web Translate Demo</title>
         	 	<link rel="stylesheet" media="screen" href="static/css/bootstrap.min.css">
         	 	<link rel="stylesheet" href="static/css/bootstrap.min.css">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,28 +48,30 @@
 			</tr>
 		</thead>
   		<tbody>
-	    {% for translation in translations_table %}
-	      <tr class="success">
-	        <td>
-	          {{translation.original}}
-	        </td>
-	        <td class="text-center">
-	          {{translation.original_count}}
-	        </td>
-	        <td>
-	          {{translation.translated}}
-	        </td>
-	        <td class="text-center">
-	          {{translation.translated_count}}
-	        </td>
-	        {% if translation.status == 'requested'  %}
-             <td class="text-danger">{{ translation.status }}</td>
-            {% elif translation.status == 'pending'  %}
-             <td class="text-warning">{{ translation.status }}</td>
-            {% else %}
-             <td class="text-success">{{ translation.status }}</td>
-            {% endif %}
-	      </tr>
+	    {% for translation in translations %}
+	    	{% cache 5, translation['id']|string, translation['translated']|string, translation['translated_count']|string, translation['status']|string%}
+		      <tr class="success">
+		        <td>
+		          {{translation.original}}
+		        </td>
+		        <td class="text-center">
+		          {{translation.original_count}}
+		        </td>
+		        <td>
+		          {{translation.translated}}
+		        </td>
+		        <td class="text-center">
+		          {{translation.translated_count}}
+		        </td>
+		        {% if translation.status == 'requested'  %}
+	             <td class="text-danger">{{ translation.status }}</td>
+	            {% elif translation.status == 'pending'  %}
+	             <td class="text-warning">{{ translation.status }}</td>
+	            {% else %}
+	             <td class="text-success">{{ translation.status }}</td>
+	            {% endif %}
+		      </tr>
+	    	{% endcache %}
 	    {% endfor %}
 	</tbody>
 </table>
