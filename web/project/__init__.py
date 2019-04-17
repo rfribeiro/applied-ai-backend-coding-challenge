@@ -29,7 +29,7 @@ def create_cache(app):
         app.cache.init_app(app,
             config={'CACHE_TYPE': 'memcached',
                     'CACHE_MEMCACHED_SERVERS': cache_servers.split(','),
-                    'CACHE_MEMCACHED_USERNAME': app.config['CACHE_MEMCACHED_USERNAME']
+                    'CACHE_MEMCACHED_USERNAME': app.config['CACHE_MEMCACHED_USERNAME'],
                     'CACHE_MEMCACHED_PASSWORD': app.config['CACHE_MEMCACHED_PASSWORD']
                     })
         print('memcached cache')
