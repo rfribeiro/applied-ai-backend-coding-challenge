@@ -1,4 +1,0 @@
-/home/rafael/Projects/flask_recipe_app_new/server/bd/CMakeFiles/edit_cache.dir
-/home/rafael/Projects/flask_recipe_app_new/server/bd/CMakeFiles/rebuild_cache.dir
-/home/rafael/Projects/flask_recipe_app_new/server/bd/CMakeFiles/consumer.dir
-/home/rafael/Projects/flask_recipe_app_new/server/bd/CMakeFiles/libamqpcpp.dir
