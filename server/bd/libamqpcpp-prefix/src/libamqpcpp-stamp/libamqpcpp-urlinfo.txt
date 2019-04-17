@@ -1,0 +1,3 @@
+repository='external project URL'
+module='https://github.com/hoxnox/AMQP-CPP/archive/v2.5.1-nx2.tar.gz'
+tag='MD5=fcfbd25c03eecde4e4b0dfa58598a426'

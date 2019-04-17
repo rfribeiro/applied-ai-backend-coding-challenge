@@ -1,0 +1,10 @@
+# Hashes of file build rules.
+f582671c7471adb32cca806612d11128 CMakeFiles/libamqpcpp
+b52d781f1daba2247b2cc02c2017267b CMakeFiles/libamqpcpp-complete
+35f4ce1510aee22e891ae4d3987ed477 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-build
+1716e120d73ea909a889507b5a383186 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-configure
+e02b01f92e2a6795070b78b95fb0d12b libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-download
+0c69dd7ae4eb0030abea4e8cef7f7c17 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-install
+5655398a7fb9223f2d6a9ce1825ccc37 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-mkdir
+b4205dbc833dcd8ead3aa065c217f306 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-patch
+ef18a0bcfdba0a489a50c47f73ab97e7 libamqpcpp-prefix/src/libamqpcpp-stamp/libamqpcpp-update

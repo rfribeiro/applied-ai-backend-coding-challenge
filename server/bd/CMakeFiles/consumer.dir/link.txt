@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/consumer.dir/src/consumer.cpp.o  -o consumer -rdynamic -lpthread -levent -lpqxx -lpq amqpcpp/lib/libamqp-cpp.a 

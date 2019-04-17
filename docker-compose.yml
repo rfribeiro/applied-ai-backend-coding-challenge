@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE="12345"
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest@123 
+      - RABBITMQ_DEFAULT_VHOST=/
+
+  postgres:
+    restart: always
+    build: ./postgresql
+    container_name: postgres
+    volumes:
+      - db_volume:/var/lib/postgresql
+    ports:
+      - 5432:5432
+  
+  memcached:
+    container_name: memcached
+    image: memcached
+    ports:
+      - 11211:11211
+
+  web:
+    restart: always
+    build: ./web
+    container_name: web
+    expose:
+      - "8000"
+    volumes:
+      - web_volume:/home/app/web/project/static
+    command: gunicorn -w 1 -b :8000 project:app
+    depends_on:
+      - postgres
+      - rabbitmq
+      - memcached
+
+  nginx:
+    restart: always
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+      - web_volume:/home/app/web/project/static
+    depends_on:
+      - web
+
+  translator:
+    container_name: translator
+    #restart: always
+    build: ./server
+    #command: ./consumer consumer.conf.json
+    depends_on:
+      - postgres
+      - rabbitmq
+      - web
+      - nginx
+
+volumes:
+  db_volume:
+  web_volume:
