@@ -64,7 +64,6 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 - [X] application deploy
 
 ## steps to RUN application
-### Pre-requirements
 ```
 #update and install packages
 sudo apt-get update && sudo apt-get install -y build-essential libpq-dev libpqxx-dev \
@@ -101,6 +100,10 @@ cd build
 cmake ..
 cmake --build .
 cd ../..
+
+# download translation pre-trained model from drive
+https://drive.google.com/open?id=1zlvHRWwlFGQsSdmYlImxskXHbB22zjmz
+copy to "applied-ai-backend-coding-challenge/server/en-de" folder
 
 # build dockers
 sudo docker-compose build
