@@ -54,11 +54,64 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 - [X] Flask web page dinamically update from database
 - [X] Flask web page pagination (removed)
 - [X] Flask web page dinamically list
-- [ ] Flask web page memcache ??
+- [X] Flask web page memcache ??
 - [ ] Flask web and C++ wrapper refactorying
-- [ ] Application configuration servers
-- [ ] Create Errors pages and test scenarios
-- [ ] Dockerize application
+- [X] Application configuration servers
+- [X] Create Errors pages and test scenarios
+- [X] Dockerize application
 - [ ] Page localization support
 - [ ] C++ wrapper batch translation ??
+- [X] application deploy
+
+## steps to RUN application
+### Pre-requirements
+```
+#update and install packages
+sudo apt-get update && sudo apt-get install -y build-essential libpq-dev libpqxx-dev \
+libtbb-dev libevent-dev libboost-all-dev git-core cmake docker python3-pip virtualenv
+
+#install docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# docker user 
+sudo usermod -aG docker rfribeiro
+
+#install docker compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+#install app
+# app
+git clone https://github.com/rfribeiro/applied-ai-backend-coding-challenge.git
+
+cd applied-ai-backend-coding-challenge
+
+pip3 install --no-cache-dir -r web/requirements.txt
+
+# create database dockerfile
+cd web
+python3 create_postgres_dockerfile.py
+cd ..
+
+cd server
+mkdir build
+cd build
+cmake ..
+cmake --build .
+cd ../..
+
+# build dockers
+sudo docker-compose build
+
+# init database schema
+sudo docker-compose run web bash
+cd web
+python instance/db_create.py
+exit
+
+# run dockers
+sudo docker-compose run --rm translator ./consumer consumer.conf.json
+```
 
