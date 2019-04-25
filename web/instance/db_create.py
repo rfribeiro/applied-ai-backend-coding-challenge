@@ -23,10 +23,10 @@ db.drop_all()
 db.create_all()
 
 # Insert user data
-t1 = Translation(original='test', status='pending')
-t2 = Translation(original='test two', status='pending')
-db.session.add(t1)
-db.session.add(t2)
+#t1 = Translation(original='test', status='pending')
+#t2 = Translation(original='test two', status='pending')
+#db.session.add(t1)
+#db.session.add(t2)
 
 # Commit the changes for the users
 db.session.commit()
