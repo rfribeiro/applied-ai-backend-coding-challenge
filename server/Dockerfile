@@ -26,4 +26,4 @@ COPY ./conf/consumer.conf.json /home/app/server/consumer.conf.json
 
 CMD chmod 775 consumer
 
-#CMD ["/bin/bash", "./home/app/server/consumer","/home/app/server/consumer.conf.json"]
+CMD ["./consumer","consumer.conf.json"]
