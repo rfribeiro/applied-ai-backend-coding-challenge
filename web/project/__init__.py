@@ -37,7 +37,7 @@ print('Creating cache!')
 app.cache = Cache()
 
 #cache_servers = app.config['CACHE_MEMCACHED_SERVERS']
-print('cache servers: ', cache_servers)
+#print('cache servers: ', cache_servers)
 #if cache_servers == None:
 app.cache.init_app(app, config={'CACHE_TYPE': 'simple'})
 print('simple cache')
