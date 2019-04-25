@@ -65,6 +65,8 @@ FYI: Please understand that this challenge is not decisive if you are applying t
 
 ## steps to RUN application
 ```
+# tested on ubuntu 16.01 LTS
+
 #update and install packages
 sudo apt-get update && sudo apt-get install -y build-essential libpq-dev libpqxx-dev \
 libtbb-dev libevent-dev libboost-all-dev git-core cmake docker python3-pip virtualenv
@@ -99,22 +101,21 @@ mkdir build
 cd build
 cmake ..
 cmake --build .
-cd ../..
+cd ..
 
 # download translation pre-trained model from drive
-https://drive.google.com/open?id=1zlvHRWwlFGQsSdmYlImxskXHbB22zjmz
-copy to "applied-ai-backend-coding-challenge/server/en-de" folder
+cd en-de
+wget http://data.statmt.org/rsennrich/wmt16_systems/en-de/model.npz
+cd ../..
 
 # build dockers
 sudo docker-compose build
 
 # init database schema
 sudo docker-compose run web bash
-cd web
 python instance/db_create.py
 exit
 
 # run dockers
-sudo docker-compose run --rm translator ./consumer consumer.conf.json
+sudo docker-compose up -d
 ```
-
